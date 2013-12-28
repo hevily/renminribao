@@ -1,0 +1,63 @@
+[General]
+SyntaxVersion=2
+BeginHotkey=122
+BeginHotkeyMod=4
+PauseHotkey=0
+PauseHotkeyMod=0
+StopHotkey=123
+StopHotkeyMod=0
+RunOnce=1
+EnableWindow=
+MacroID=ffc08931-4aac-427e-91c0-85430a64a9fa
+Description=我的脚本1
+Enable=1
+AutoRun=0
+[Repeat]
+Type=0
+Number=1
+[SetupUI]
+Type=2
+QUI=
+[Relative]
+SetupOCXFile=
+[Comment]
+
+[Script]
+'==========以下是按键精灵录制的内容==========
+UserVar Shift=15 "设置内容"
+UserVar N=0 "设置内容"
+
+For 25
+MoveTo 180, 250+N*Shift
+Delay 1000
+LeftClick 1
+Delay 1
+LeftUp 1
+Delay 1000
+
+IfColor 216,209,"FFFFFF",0 Then
+KeyDown "BackSpace", 1
+Delay 1
+KeyUp "BackSpace", 1
+Delay 1
+End If
+N=N+1
+Next
+
+IfColor 300, 690, "0000E1", 0 Then
+MoveTo 300, 690
+Delay 1000
+LeftClick 1
+LeftUp 1
+Delay 1000
+
+Else 
+MoveTo 528, 682
+Delay 1000
+LeftClick 1
+LeftUp 1
+Delay 1000
+
+End If
+
+'==========以上是按键精灵录制的内容==========
