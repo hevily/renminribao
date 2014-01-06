@@ -55,12 +55,22 @@ public class FilesArranger {
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		String FileName = "";
-		String TitleName = "";
+		
 		String targetFolder = "C:\\Users\\penghai\\Desktop\\人民日报";
 		String desFolder = "C:\\Users\\penghai\\Desktop\\人民日报整理后\\";
 		String guanggaoFolder = "C:\\Users\\penghai\\Desktop\\广告\\";
 		String tupianFolder = "C:\\Users\\penghai\\Desktop\\图片报道\\";
+		
+		String FileName = "";
+		String TitleName = "";
+		try {
+			FileUtils.cleanDirectory(new File(desFolder));
+			FileUtils.cleanDirectory(new File(tupianFolder));
+			FileUtils.cleanDirectory(new File(desFolder));
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		
 		int countNum = 0;
 		String preDate = "";
