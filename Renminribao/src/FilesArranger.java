@@ -13,6 +13,9 @@ import java.util.Scanner;
 
 import org.apache.commons.io.FileUtils;
 
+import de.l3s.boilerpipe.BoilerpipeProcessingException;
+import de.l3s.boilerpipe.extractors.ArticleExtractor;
+
 
 public class FilesArranger {
 
@@ -52,17 +55,29 @@ public class FilesArranger {
 	        }
 	    }
 	}
-	
+	public static void extracContent(String sFolder) throws IOException, BoilerpipeProcessingException {
+		File sou = new File(sFolder);
+		File[] files = sou.listFiles();
+		for(File f:files){
+			String s = FileUtils.readFileToString(f);
+			String text = ArticleExtractor.INSTANCE.getText(s);
+			FileUtils.write(f, text, false);
+			System.out.println(f.getName()+"   extracted");
+		}
+	}
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
-		String targetFolder = "C:\\Users\\penghai\\Desktop\\人民日报";
+		String targetFolder = "C:\\Users\\penghai\\Downloads\\人民日报";
 		String desFolder = "C:\\Users\\penghai\\Desktop\\人民日报整理后\\";
 		String guanggaoFolder = "C:\\Users\\penghai\\Desktop\\广告\\";
 		String tupianFolder = "C:\\Users\\penghai\\Desktop\\图片报道\\";
 		
 		String FileName = "";
 		String TitleName = "";
+		new File(desFolder).mkdir();
+		new File(guanggaoFolder).mkdir();
+		new File(tupianFolder).mkdir();
 		try {
 			FileUtils.cleanDirectory(new File(desFolder));
 			FileUtils.cleanDirectory(new File(tupianFolder));
@@ -103,7 +118,7 @@ public class FilesArranger {
 				String title = scan.nextLine();
 				int index = title.indexOf('-');
 				title = title.substring(0,index);
-				
+//				System.out.println(title);
 				
 				//检验是否重复
 				if(titleFileMap.containsKey(title)){
